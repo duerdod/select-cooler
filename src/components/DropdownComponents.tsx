@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div<ContainerProps>`
-  width: 20%;
+  width: 25%;
   position: relative;
   background-color: #ffffff;
   margin-bottom: 16px;
@@ -12,6 +12,10 @@ export const Container = styled.div<ContainerProps>`
   button {
     color: #383838;
     text-transform: capitalize;
+  }
+
+  @media screen and (max-width: 40em) {
+    width: 50%;
   }
 `;
 
@@ -44,6 +48,15 @@ export const Button = styled.button`
   font-weight: ${p => p.theme.fontWeight[0]};
 `;
 
+export const Input = styled.input`
+  width: 100%;
+  height: 2.6rem;
+  font-size: 1rem;
+  padding: 0.8rem 0.5rem;
+  font-family: ${p => p.theme.fontStyle};
+  text-transform: capitalize;
+`;
+
 export const Item = styled.li`
   margin: 0;
   padding: 0.8rem 0.5rem;
@@ -57,7 +70,7 @@ export const Item = styled.li`
   display: flex;
   align-items: center;
   background-color: #ffffff;
-  border: 1px solid #f9f9f9;
+  border-bottom: 1px solid #f9f9f9;
   position: relative;
   cursor: pointer;
   font-family: inherit;

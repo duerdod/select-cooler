@@ -21,6 +21,9 @@ const StyledTitle = styled.h1<StyledProps>`
   margin-bottom: 1rem;
   width: 100%;
   text-align: center;
+  @media screen and (max-width: 40em) {
+    font-size: ${p => (p.large ? '2rem' : '1.2rem')};
+  }
 `;
 
 export const Title = ({ color, large = false }: TitleProps) => {

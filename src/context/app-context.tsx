@@ -13,7 +13,7 @@ type ProviderProps = {
 interface IAppContext {
   currentColor: string;
   setColor: (color: string) => void; // Why not string?
-  colors: Color[];
+  colors: string[];
 }
 
 export const AppContext = React.createContext<IAppContext>({
