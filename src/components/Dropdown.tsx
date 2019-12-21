@@ -8,7 +8,8 @@ type Color = {
 
 interface IDropdownProps {
   colors?: Color[];
-  onChange?: (selectItem: string) => void;
+  onChange?: (color: string) => void;
+  itemToSting?: (color: string) => void;
   currentColor: string;
   setColor: (color: string) => void;
 }
@@ -33,7 +34,7 @@ export const Dropdown: React.FC<IDropdownProps> = ({
         return (
           <Container {...getRootProps()} isOpen={isOpen}>
             <Button {...getToggleButtonProps()}>
-              {selectedItem || 'Select color'}
+              {selectedItem || 'Colors'}
             </Button>
             <Menu {...getMenuProps()}>
               {colors.map(

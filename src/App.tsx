@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
   return (
     <Backdrop backdropColor={currentColor}>
-      <Title large color={currentColor} title="Hei " />
+      <Title large color={currentColor} />
       <Dropdown colors={colors} {...currentColorProps} />
     </Backdrop>
   );

@@ -13,7 +13,7 @@ interface TitleProps {
 }
 
 const StyledTitle = styled.h1<StyledProps>`
-  color: ${p => (p.color.includes('white') ? '#000000' : '#FFFFFF')};
+  color: ${p => (p.color.includes('white') ? '#383838' : '#FFFFFF')};
   font-size: ${p => (p.large ? '3rem' : '1.2rem')};
   text-transform: uppercase;
   font-weight: 800;

@@ -8,6 +8,11 @@ export const Container = styled.div<ContainerProps>`
   border-radius: ${p => (p.isOpen ? '4px 4px 0 0' : '4px')};
   font-family: ${p => p.theme.fontStyle};
   font-weight: ${p => p.theme.fontWeight[2]};
+
+  button {
+    color: #383838;
+    text-transform: capitalize;
+  }
 `;
 
 export const Menu = styled.ul`
@@ -43,7 +48,6 @@ export const Item = styled.li`
   margin: 0;
   padding: 0.8rem 0.5rem;
   width: 100%;
-  color: black;
   font-size: 1rem;
 
   display: flex;

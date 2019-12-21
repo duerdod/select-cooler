@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { getColors } from '../constants/constants';
+import { getColors } from '../utils/colors';
+import { randomizer } from '../utils/randomizer';
 
 type Color = {
   color?: string;
@@ -22,8 +23,9 @@ export const AppContext = React.createContext<IAppContext>({
 });
 
 export function AppProvider({ children }: ProviderProps) {
-  const [currentColor, setColor] = React.useState('seagreen');
   const colors = getColors();
+  const randomIndex = randomizer(0, colors);
+  const [currentColor, setColor] = React.useState(colors[randomIndex]);
 
   return (
     <AppContext.Provider value={{ currentColor, setColor, colors }}>
