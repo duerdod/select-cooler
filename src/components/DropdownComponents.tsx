@@ -4,7 +4,7 @@ export const Container = styled.div<ContainerProps>`
   width: 25%;
   position: relative;
   background-color: #ffffff;
-  margin-bottom: 16px;
+  margin-bottom: 7rem;
   font-family: ${p => p.theme.fontStyle};
   border-radius: ${p => (p.isOpen ? '4px 4px 0 0' : '4px')};
   button {
@@ -27,11 +27,15 @@ export const Menu = styled.ul`
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: 0 0 4px 4px;
+  /* box-shadow: 0px 3px 15p rgba(0, 0, 0, 0.2); */
+  box-shadow: 1px 5px 10px -6px rgba(0, 0, 0, 0.2);
 `;
 
 export const ButtonContainer = styled.div<ContainerProps>`
   position: relative;
   border-radius: ${p => (p.isOpen ? '4px 4px 0 0' : '4px')};
+  box-shadow: 1px 5px 10px -6px rgba(0, 0, 0, 0.2);
+
   .clear-search {
     position: absolute;
     right: 0;
@@ -53,6 +57,7 @@ export const Button = styled.button`
   align-items: center;
   background-color: #ffffff;
   border: none;
+  outline: none;
   border-radius: inherit;
   font-family: inherit;
   font-weight: ${p => p.theme.fontWeight[0]};

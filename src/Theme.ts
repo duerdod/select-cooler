@@ -9,19 +9,25 @@ export const GlobalStyle = createGlobalStyle`
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap');
 
-    * {
+  * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-        }
+  }
+
   html {
     font-size: 16px;
   }
   html, body, #root {
     min-height: 100%;
   }
+
+  body {
+    overflow: hidden;
+  }
+
   button {
     cursor: pointer;
     border: none;
