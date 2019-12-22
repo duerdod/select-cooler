@@ -6,12 +6,12 @@ import { Backdrop } from './components/Backdrop';
 
 const App: React.FC = () => {
   const { colors, setColor, currentColor } = useContext(AppContext);
-  const currentColorProps = { setColor, currentColor };
+  const currentColorProps = { colors, setColor, currentColor };
 
   return (
     <Backdrop backdropColor={currentColor}>
-      <Title large color={currentColor} />
-      <Dropdown colors={colors} {...currentColorProps} />
+      <Title large title={currentColor} />
+      <Dropdown {...currentColorProps} />
     </Backdrop>
   );
 };

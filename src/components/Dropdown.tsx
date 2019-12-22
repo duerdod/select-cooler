@@ -1,6 +1,13 @@
 import * as React from 'react';
 import Downshift from 'downshift';
-import { Container, Menu, Button, Item, Input } from './DropdownComponents';
+import {
+  Container,
+  Menu,
+  ButtonContainer,
+  Button,
+  Item,
+  Input
+} from './DropdownComponents';
 
 // type Color = {
 //   color?: string;
@@ -9,7 +16,7 @@ import { Container, Menu, Button, Item, Input } from './DropdownComponents';
 interface IDropdownProps {
   colors: string[];
   onChange?: (color: string) => void;
-  itemToSting?: (color: string) => void;
+  itemToSting?: (color: string) => string;
   currentColor: string;
   setColor: (color: string) => void;
 }
@@ -29,17 +36,35 @@ export const Dropdown: React.FC<IDropdownProps> = ({
         isOpen,
         selectedItem,
         highlightedIndex,
-        inputValue
-        // clearSelection
+        inputValue,
+        reset
       }) => {
-        // console.log({ clearSelection });
         return (
           <Container {...getRootProps()} isOpen={isOpen}>
-            <Button {...getToggleButtonProps()}>
-              {selectedItem || 'Colors'}
-            </Button>
+            <ButtonContainer isOpen={isOpen}>
+              <Button {...getToggleButtonProps()}>
+                {selectedItem || 'Colors'}
+              </Button>
+              <button
+                className="clear-search"
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                  reset({
+                    inputValue: '',
+                    isOpen: true
+                  })
+                }
+              >
+                &times;
+              </button>
+            </ButtonContainer>
             <Menu {...getMenuProps()}>
-              {isOpen && <Input {...getInputProps()} autoFocus />}
+              {isOpen && (
+                <Input
+                  {...getInputProps()}
+                  placeholder="Search color"
+                  autoFocus
+                />
+              )}
               {// On search
               isOpen &&
               inputValue &&

@@ -2,10 +2,6 @@ import * as React from 'react';
 import { getColors } from '../utils/colors';
 import { randomizer } from '../utils/randomizer';
 
-type Color = {
-  color?: string;
-};
-
 type ProviderProps = {
   children: React.ReactNode;
 };

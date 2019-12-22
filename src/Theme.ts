@@ -1,16 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
-  fontStyle: 'Arial Black, sans-serif',
-  fontWeight: ['400', '600', '800']
+  fontStyle: 'Roboto, sans-serif',
+  fontWeight: ['400', '900']
 };
 
 export const GlobalStyle = createGlobalStyle`
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap');
+
     * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Karla', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
         }
