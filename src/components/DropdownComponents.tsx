@@ -4,7 +4,8 @@ export const Container = styled.div<ContainerProps>`
   width: 25%;
   position: relative;
   background-color: #ffffff;
-  margin-bottom: 7rem;
+  /* margin-bottom: 7rem; */
+  margin-bottom: 1rem;
   font-family: ${p => p.theme.fontStyle};
   border-radius: ${p => (p.isOpen ? '4px 4px 0 0' : '4px')};
   button {

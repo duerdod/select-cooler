@@ -8,7 +8,7 @@ type ProviderProps = {
 
 interface IAppContext {
   currentColor: string;
-  setColor: (color: string) => void; // Why not string?
+  setColor: (color: string) => void; // Why not string? Because it does not return "anything"!
   colors: string[];
 }
 
@@ -19,9 +19,10 @@ export const AppContext = React.createContext<IAppContext>({
 });
 
 export function AppProvider({ children }: ProviderProps) {
-  const colors = getColors();
-  const randomIndex = randomizer(0, colors);
-  const [currentColor, setColor] = React.useState(colors[randomIndex]);
+  const colors = React.useMemo(() =>  getColors(), []);
+  const randomIndex = React.useMemo(() => randomizer(0, colors), [colors])
+  const randomColor = React.useMemo(() => colors[randomIndex], [colors]);
+  const [currentColor, setColor] = React.useState<string>(randomColor);
 
   return (
     <AppContext.Provider value={{ currentColor, setColor, colors }}>
