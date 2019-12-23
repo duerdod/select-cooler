@@ -9,20 +9,29 @@ import {
   Input
 } from './DropdownComponents';
 
-interface IDropdownProps {
+interface DropdownProps {
   colors: string[];
   currentColor: string;
   placeholder?: string;
   setColor: (color: string) => void;
-  onChange?: (color: string) => void;
-  itemToSting?: (color: string) => string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  // onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const Dropdown: React.FC<IDropdownProps> = ({
-  colors = [],
-  setColor
-}) => {
+interface ClearSearchProps {
+  options: {
+    inputValue: string | null;
+    isOpen: boolean;
+  };
+  reset: (options: {}) => void;
+}
+
+const ClearSearch = ({ reset, options }: ClearSearchProps) => (
+  <button className="clear-search" onClick={() => reset(options)}>
+    &times;
+  </button>
+);
+
+export const Dropdown = ({ colors = [], setColor }: DropdownProps) => {
   return (
     <Downshift onChange={color => (color ? setColor(color) : undefined)}>
       {({
@@ -42,17 +51,10 @@ export const Dropdown: React.FC<IDropdownProps> = ({
             <Button {...getToggleButtonProps()}>
               {selectedItem || 'Colors'}
             </Button>
-            <button
-              className="clear-search"
-              onClick={() =>
-                reset({
-                  inputValue: '',
-                  isOpen: true
-                })
-              }
-            >
-              &times;
-            </button>
+            <ClearSearch
+              reset={reset}
+              options={{ inputValue: '', isOpen: true }}
+            />
           </ButtonContainer>
           <Menu {...getMenuProps()}>
             {isOpen && (

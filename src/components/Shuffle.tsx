@@ -1,4 +1,4 @@
-import React, { useContext, MouseEvent } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../context/app-context';
 import styled from 'styled-components';
 import { randomizer } from '../utils/randomizer';
@@ -7,13 +7,9 @@ const ShuffleContainer = styled.div`
   margin-bottom: 6rem;
 `;
 
-interface IShuffe {
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-}
-
-export const Shuffle: React.FC<IShuffe> = () => {
+export const Shuffle: React.FC = () => {
   const { setColor, colors } = useContext(AppContext);
-  const randomizeColor = () => setColor(colors[randomizer(0, colors)]);
+  const randomizeColor = (): void => setColor(colors[randomizer(0, colors)]);
 
   return (
     <ShuffleContainer>
