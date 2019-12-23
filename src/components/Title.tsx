@@ -1,15 +1,12 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/app-context';
 import styled from 'styled-components';
 
 interface StyledProps {
-  title?: string;
-  color?: string;
   large?: boolean;
 }
 
 interface TitleProps {
-  title: string;
-  color?: string;
   large?: boolean;
 }
 
@@ -28,6 +25,7 @@ const StyledTitle = styled.h1<StyledProps>`
   }
 `;
 
-export const Title = ({ title, large = false }: TitleProps) => {
-  return <StyledTitle large={large}>{title}</StyledTitle>;
+export const Title = ({ large = false }: TitleProps) => {
+  const { currentColor } = useContext(AppContext);
+  return <StyledTitle large={large}>{currentColor}</StyledTitle>;
 };

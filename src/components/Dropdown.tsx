@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/app-context';
 import Downshift from 'downshift';
 import {
   Container,
@@ -8,14 +9,6 @@ import {
   Item,
   Input
 } from './DropdownComponents';
-
-interface DropdownProps {
-  colors: string[];
-  currentColor: string;
-  placeholder?: string;
-  setColor: (color: string) => void;
-  // onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
 
 interface ClearSearchProps {
   options: {
@@ -31,7 +24,8 @@ const ClearSearch = ({ reset, options }: ClearSearchProps) => (
   </button>
 );
 
-export const Dropdown = ({ colors = [], setColor }: DropdownProps) => {
+export const Dropdown = () => {
+  const { colors, setColor } = useContext(AppContext);
   return (
     <Downshift onChange={color => (color ? setColor(color) : undefined)}>
       {({

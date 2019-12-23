@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/app-context';
 import styled from 'styled-components';
 
 interface BackdropProps {
-  backdropColor: string;
+  backdropColor?: string;
   children: React.ReactNode;
 }
 
@@ -19,9 +20,10 @@ const BackdropContainer = styled.div<BackdropProps>`
   transition: background 0.2s ease;
 `;
 
-export const Backdrop = ({ backdropColor, children }: BackdropProps) => {
+export const Backdrop = ({ children }: BackdropProps) => {
+  const { currentColor } = useContext(AppContext);
   return (
-    <BackdropContainer backdropColor={backdropColor}>
+    <BackdropContainer backdropColor={currentColor}>
       {children}
     </BackdropContainer>
   );
