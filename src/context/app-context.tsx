@@ -19,9 +19,12 @@ export const AppContext = React.createContext<IAppContext>({
 });
 
 export function AppProvider({ children }: ProviderProps) {
-  const colors = React.useMemo(() =>  getColors(), []);
-  const randomIndex = React.useMemo(() => randomizer(0, colors), [colors])
-  const randomColor = React.useMemo(() => colors[randomIndex], [colors]);
+  const colors = React.useMemo(() => getColors(), []);
+  const randomIndex = React.useMemo(() => randomizer(0, colors), [colors]);
+  const randomColor = React.useMemo(() => colors[randomIndex], [
+    colors,
+    randomIndex
+  ]);
   const [currentColor, setColor] = React.useState<string>(randomColor);
 
   return (

@@ -9,16 +9,14 @@ import {
   Input
 } from './DropdownComponents';
 
-// type Color = {
-//   color?: string;
-// };
-
 interface IDropdownProps {
   colors: string[];
+  currentColor: string;
+  placeholder?: string;
+  setColor: (color: string) => void;
   onChange?: (color: string) => void;
   itemToSting?: (color: string) => string;
-  currentColor: string;
-  setColor: (color: string) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const Dropdown: React.FC<IDropdownProps> = ({
@@ -38,66 +36,46 @@ export const Dropdown: React.FC<IDropdownProps> = ({
         highlightedIndex,
         inputValue,
         reset
-      }) => {
-        return (
-          <Container {...getRootProps()} isOpen={isOpen}>
-            <ButtonContainer isOpen={isOpen}>
-              <Button {...getToggleButtonProps()}>
-                {selectedItem || 'Colors'}
-              </Button>
-              <button
-                className="clear-search"
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                  reset({
-                    inputValue: '',
-                    isOpen: true
-                  })
-                }
-              >
-                &times;
-              </button>
-            </ButtonContainer>
-            <Menu {...getMenuProps()}>
-              {isOpen && (
-                <Input
-                  {...getInputProps()}
-                  placeholder="Search color"
-                  autoFocus
-                />
-              )}
-              {// On search
-              isOpen &&
-              inputValue &&
-              inputValue.length > 0 &&
-              inputValue !== selectedItem
-                ? colors
-                    .filter(
-                      color =>
-                        !inputValue || color.includes(inputValue.toLowerCase())
-                    )
-                    .map(
-                      (color: string, index: number) =>
-                        inputValue &&
-                        inputValue.length > 1 && (
-                          <Item
-                            {...getItemProps({
-                              item: color,
-                              index,
-                              key: index,
-                              style: {
-                                background:
-                                  index === highlightedIndex ? color : 'white'
-                              }
-                            })}
-                          >
-                            <button type="button">{color}</button>
-                          </Item>
-                        )
-                    )
-                : // Otherwise
-                  colors.map(
+      }) => (
+        <Container {...getRootProps()} isOpen={isOpen}>
+          <ButtonContainer isOpen={isOpen}>
+            <Button {...getToggleButtonProps()}>
+              {selectedItem || 'Colors'}
+            </Button>
+            <button
+              className="clear-search"
+              onClick={() =>
+                reset({
+                  inputValue: '',
+                  isOpen: true
+                })
+              }
+            >
+              &times;
+            </button>
+          </ButtonContainer>
+          <Menu {...getMenuProps()}>
+            {isOpen && (
+              <Input
+                {...getInputProps()}
+                placeholder="Search color"
+                autoFocus
+              />
+            )}
+            {// On search
+            isOpen &&
+            inputValue &&
+            inputValue.length > 0 &&
+            inputValue !== selectedItem
+              ? colors
+                  .filter(
+                    color =>
+                      !inputValue || color.includes(inputValue.toLowerCase())
+                  )
+                  .map(
                     (color: string, index: number) =>
-                      isOpen && (
+                      inputValue &&
+                      inputValue.length > 1 && (
                         <Item
                           {...getItemProps({
                             item: color,
@@ -112,11 +90,29 @@ export const Dropdown: React.FC<IDropdownProps> = ({
                           <button type="button">{color}</button>
                         </Item>
                       )
-                  )}
-            </Menu>
-          </Container>
-        );
-      }}
+                  )
+              : // Otherwise
+                colors.map(
+                  (color: string, index: number) =>
+                    isOpen && (
+                      <Item
+                        {...getItemProps({
+                          item: color,
+                          index,
+                          key: index,
+                          style: {
+                            background:
+                              index === highlightedIndex ? color : 'white'
+                          }
+                        })}
+                      >
+                        <button type="button">{color}</button>
+                      </Item>
+                    )
+                )}
+          </Menu>
+        </Container>
+      )}
     </Downshift>
   );
 };

@@ -13,7 +13,7 @@ const App: React.FC = () => {
     <Backdrop backdropColor={currentColor}>
       <Title large title={currentColor} />
       <Dropdown {...currentColorProps} />
-      {/* <Shuffle /> */}
+      <Shuffle />
     </Backdrop>
   );
 };
