@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/app-context';
 import Downshift from 'downshift';
 import {
@@ -26,6 +26,23 @@ const ClearSearch = ({ reset, options }: ClearSearchProps) => (
 
 export const Dropdown = () => {
   const { colors, setColor } = useContext(AppContext);
+  const [index, setIndex] = useState(0);
+
+  function nextColor(e: React.KeyboardEvent<HTMLBodyElement>) {
+    setIndex(index => (index + 1) % colors.length);
+  }
+
+  useEffect(() => {
+    const [body]: HTMLCollectionOf<any> = document.getElementsByTagName('body');
+    body.addEventListener('keydown', nextColor);
+
+    return () => body.removeEventListener('keydown', nextColor);
+  }, [index, nextColor]);
+
+  useEffect(() => {
+    setColor(colors[index]);
+  }, [index]);
+
   return (
     <Downshift onChange={color => (color ? setColor(color) : undefined)}>
       {({
